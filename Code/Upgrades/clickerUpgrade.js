@@ -1,10 +1,12 @@
 class Upgrade {
     CPS;
-    type;
+    type;   
 
 
     constructor(CPS, type) {
         this.CPS = CPS;
-        this.type = type;
+        this.type = type
+        
     }
+
 }
