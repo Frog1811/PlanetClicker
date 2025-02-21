@@ -38,6 +38,11 @@
             <div>Total Plants: 15</div>
         </div>
     </div>
+    <footer>
+        <?php
+        include 'Upgrades/upgrade.php';
+        ?>
+    </footer>
 <!--    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" xmlns:bx="https://boxy-svg.com">-->
 <!--        <defs></defs>-->
 <!--        <ellipse style="fill: #b0f5fa; stroke: rgb(0, 0, 0);" cx="258.839" cy="252.698" rx="138.504" ry="138.504"></ellipse>-->
