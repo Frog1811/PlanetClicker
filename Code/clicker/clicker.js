@@ -1,5 +1,4 @@
 class clicker {
-
     constructor(){
     this.presure = 0;
 }

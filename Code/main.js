@@ -1,6 +1,6 @@
 
 function init(){
-    setInterval(counter,1000);
+    setInterval(counter,100);
     // console.log('hoi');
 }
 function counter(){
