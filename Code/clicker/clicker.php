@@ -1,9 +1,7 @@
 <script src="/Planetclicker/Code/clicker/clicker.js"> 
 </script>
 <script src="main.js"></script>
-<?php
-include 'counter.php';
-?> 
+
 
 
 <div class="stats">
