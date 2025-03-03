@@ -14,5 +14,7 @@ include 'clickerUpgrade.js';
     let biomassGenerator = new Upgrade(10, "Biomass")
     let treeSpreader = new Upgrade(15, "Biomass")
 
+    function ownedUpgrades(){
 
+    }
 </script>
