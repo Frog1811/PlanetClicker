@@ -1,9 +1,13 @@
+<script src="/Planetclicker/Code/clicker/clicker.js"> 
+</script>
+<script src="main.js"></script>
 <?php
-//include 'clicker.js';
+include 'counter.php';
 ?> 
-<script src="clicker.js"></script>
+
+
 <div class="stats">
             <div>Total Heat: 120</div>
-            <div>Total Pressure: 142</div>
+            <div id="presure">Total Pressure: 99  </div>
             <div>Total Plants: 15</div>
         </div>

@@ -1,10 +1,12 @@
 class clicker {
-presure = 0 ;
+
     constructor(){
-    presure = 0;
+    this.presure = 0;
 }
 clickPlanet(){
     this.presure++;
     console.log(this.presure);
 }
 }
+
+var click = new clicker(0)
