@@ -1,6 +1,8 @@
-<script src="/Planetclicker/Code/clicker/clicker.js"> 
+<?php require_once(__DIR__.'/../config.php');?>
+
+<script src="<?php global $baseurl; echo $baseurl; ?>clicker/clicker.js">
 </script>
-<script src="main.js"></script>
+<script src="../main.js"></script>
 
 
 
