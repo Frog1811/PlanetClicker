@@ -6,6 +6,7 @@ function init(){
 function counter(){
     // console.log('count');
     document.getElementById('presure').innerHTML = `Total Pressure: ${click.presure}`;  
+    document.getElementById('heat').innerHTML = `Total Pressure: ${click.heat}`;
 }
 
 document.addEventListener("DOMContentLoaded", function() {

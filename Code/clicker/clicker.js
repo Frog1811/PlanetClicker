@@ -1,11 +1,16 @@
-class clicker {
-    constructor(){
-    this.presure = 0;
-}
-clickPlanet(){
-    this.presure++;
-    console.log(this.presure);
-}
+class Clicker {
+    presure = 0;
+    heat = 0;
+    constructor(preasure, heat) {
+        this.presure = 0;
+        this.heat = 0;
+    }
+
+    clickPlanet() {
+        this.presure++;
+        console.log(this.presure);
+        console.log(this.heat);
+    }
 }
 
-var click = new clicker(0)
+let click = new Clicker(0, 0);
