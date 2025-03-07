@@ -1,5 +1,5 @@
 class Clicker {
-    presure = 0;
+    presure = -100;
     heat = 0;
     biomass = 0;
     constructor(presure, heat, biomass) {
@@ -17,4 +17,4 @@ class Clicker {
     }
 }
 
-let click = new Clicker(0, 0);
+let click = new Clicker(-100, 0, 0);

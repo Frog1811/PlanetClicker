@@ -6,8 +6,9 @@ function init(){
 }
 function counter(){
     // console.log('count');
-    document.getElementById('presure').innerHTML = `Total Pressure: ${click.presure}`;  
-    document.getElementById('heat').innerHTML = `Total Heat: ${click.heat}`;
+    document.getElementById('presure').innerHTML = `Total Pressure: ${click.presure} nPa`;
+    document.getElementById('heat').innerHTML = `Total Heat: ${click.heat} pK`;
+    document.getElementById('biomass').innerHTML = `Total Biomass: ${click.biomass} g`;
 }
 
 function Planet(){

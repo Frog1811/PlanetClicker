@@ -57,9 +57,9 @@
             <div class="progress-bar"><div class="progress"></div></div>
         </div>
         <div class="stats">
-            <div id="heat">Total Heat: 0</div>
-            <div id="presure">Total Pressure: 0  </div>
-            <div id="biomass">Total biomass: 0</div>
+            <div id="heat">Total Heat: 0 pK</div>
+            <div id="presure">Total Pressure: 0  nPa</div>
+            <div id="biomass">Total Biomass: 0 g</div>
         </div>
         <?php
         include 'clicker/clicker.php';
