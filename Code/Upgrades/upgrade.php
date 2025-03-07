@@ -32,8 +32,9 @@
             </button>
             <button class="upContainer" onclick="incrementOwnedT2_heater()" id="T2-heater">
                 <div class="test">
-                    Owned: <span id="ownedCountHeater2">0</span> <br><br>
+                    Owned: <span id="ownedCountHeater2">0</span><br>
                 </div>
+                    <div id="T2Heat-price">Price: 10</div>
                 T2-Heater
             </button>
             <button class="upContainer" onclick="incrementOwnedT3_heater()" id="T3-heater">
