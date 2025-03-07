@@ -26,12 +26,12 @@ echo '</script>';
         T3_drill.price = 1000;
 
         T1_heater.price = 20;
-        T2_heater.price = 20;
-        T3_heater.price = 60;
+        T2_heater.price = 200;
+        T3_heater.price = 1000;
 
         SeedGrower.price = 20;
-        BiomassGen.price = 20;
-        TreeSpreader.price = 60;
+        BiomassGen.price = 200;
+        TreeSpreader.price = 1000;
     }
 
     function incrementOwnedT1_drill() {
