@@ -1,7 +1,7 @@
 class Clicker {
     presure = 0;
     heat = 0;
-    constructor(preasure, heat) {
+    constructor(presure, heat) {
         this.presure = 0;
         this.heat = 0;
     }
