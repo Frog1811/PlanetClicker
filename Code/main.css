@@ -3,6 +3,7 @@ body {
     text-align: center;
     background-color: #0b0f2c;
     color: white;
+    overflow-x: hidden;
 }
 .title {
     background: #1b1f4a;
@@ -105,8 +106,24 @@ button:hover {
     width: 30vh;
 }
 
-footer{
+footer {
     display: flex;
+    justify-content: space-between;
     position: absolute;
     bottom: 1vh;
+    width: 100%;
+}
+
+.shop {
+    background: #1b1f4a;
+    border-radius: 10px;
+    max-width: 10vh;
+    min-width: 50vh;
+    max-height: 32vh;
+    min-height: 32vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 3vh;
 }

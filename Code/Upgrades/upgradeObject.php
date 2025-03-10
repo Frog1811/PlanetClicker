@@ -6,33 +6,17 @@ echo '<script>';
 echo '</script>';
 ?>
 <script>
-    let T1_drill = new Upgrade(5, "Pressure", 0, 0, 0);
-    let T2_drill = new Upgrade(20, "Pressure", 0, 0, 0);
-    let T3_drill = new Upgrade(60, "Pressure", 0, 0, 0);
+    let T1_drill = new Upgrade(5, "Pressure", 0, 0, 20);
+    let T2_drill = new Upgrade(20, "Pressure", 0, 0, 200);
+    let T3_drill = new Upgrade(60, "Pressure", 0, 0, 1000);
 
-    let T1_heater = new Upgrade(5, "Heat", 0, 0, 0);
-    let T2_heater = new Upgrade(20, "Heat", 0, 0, 0);
-    let T3_heater = new Upgrade(60, "Heat", 0, 0, 0);
+    let T1_heater = new Upgrade(5, "Heat", 0, 0, 20);
+    let T2_heater = new Upgrade(20, "Heat", 0, 0, 200);
+    let T3_heater = new Upgrade(60, "Heat", 0, 0, 1000);
 
-    let SeedGrower = new Upgrade(5, "Biomass", 0, 0, 0);
-    let BiomassGen = new Upgrade(20, "Biomass", 0, 0, 0);
-    let TreeSpreader = new Upgrade(60, "Biomass", 0, 0, 0);
-
-
-
-    function setBasePrice() {
-        T1_drill.price = 20;
-        T2_drill.price = 200;
-        T3_drill.price = 1000;
-
-        T1_heater.price = 20;
-        T2_heater.price = 200;
-        T3_heater.price = 1000;
-
-        SeedGrower.price = 20;
-        BiomassGen.price = 200;
-        TreeSpreader.price = 1000;
-    }
+    let SeedGrower = new Upgrade(5, "Biomass", 0, 0, 20);
+    let BiomassGen = new Upgrade(20, "Biomass", 0, 0, 200);
+    let TreeSpreader = new Upgrade(60, "Biomass", 0, 0, 1000);
 
     function incrementOwnedT1_drill() {
         if (click.heat >= T1_drill.price) {
@@ -140,6 +124,5 @@ echo '</script>';
         automatedpressure();
         automatedheat();
         automatedBio()
-        setBasePrice();
     });
 </script>

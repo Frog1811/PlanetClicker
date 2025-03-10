@@ -10,8 +10,8 @@ class Upgrade {
         this.CPS = CPS;
         this.type = type
         this.owned = owned;
-        this.power = 0;
-        this.price = 0;
+        this.power = power;
+        this.price = price;
     }
 
 }

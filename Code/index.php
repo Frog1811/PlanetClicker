@@ -69,6 +69,7 @@
     <footer>
         <?php
         include 'Upgrades/upgrade.php';
+        include 'Shop/shop.php';
         ?>
     </footer>
 
