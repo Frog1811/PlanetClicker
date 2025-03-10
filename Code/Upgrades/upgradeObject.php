@@ -145,7 +145,7 @@ echo '</script>';
     function automatedpressure() {
         setInterval(() => {
             clicker.presure += T1_drill.power + T2_drill.power + T3_drill.power;
-            document.getElementById('presure').textContent = `Total Pressure: ${clicker.presure} nPa`;
+            document.getElementById('presure').textContent = `Total Pressure: ${clicker.presure}&nbspnPa`;
         }, 1000);
     }
 
@@ -186,7 +186,7 @@ echo '</script>';
         clicker.biomass = 0;
 
         // Update UI
-        document.getElementById('presure').textContent = `Total Pressure: ${clicker.presure} nPa`;
+        document.getElementById('presure').textContent = `Total Pressure: ${clicker.presure}&nbspnPa`;
         document.getElementById('heat').textContent = `Total Heat: ${clicker.heat} pK`;
         document.getElementById('biomass').textContent = `Total Biomass: ${clicker.biomass} g`;
 

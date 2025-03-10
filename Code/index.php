@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planet Game</title>
     <link rel="stylesheet" href="main.css">
-    <?php require_once(__DIR__.'/config.php');?>
-    <script src="<?php global $baseurl; echo $baseurl; ?>clicker/clicker.js"></script>
+    <?php require_once(__DIR__ . '/config.php'); ?>
+    <script src="<?php global $baseurl;
+                    echo $baseurl; ?>clicker/clicker.js"></script>
 </head>
+
 <body>
     <div class="title">Planet Clicker</div>
     <div class="container">
@@ -21,23 +24,26 @@
         </div>
         <div class="game-area">
             <div class="planet">
-                <img src="img/afbeelding (1).png" onclick="console.log(clicker.clickPlanet())" class="planet" alt="" style="display: block;">
-                <img src="img/afbeelding (3).png" class="planet" alt="" style="display: none;">
-                <!-- <img src="<?php global $baseurl; echo $baseurl;?>img/afbeelding (4).png" class="planet" alt="">
-                <img src="<?php global $baseurl; echo $baseurl;?>img/afbeelding (5).png" class="planet" alt="">
-                <img src="<?php global $baseurl; echo $baseurl;?>img/afbeelding (6).png" class="planet" alt="">
-            <img src="<?php global $baseurl; echo $baseurl;?>img/afbeelding (7).png" class="planet" alt="" >    
-            <img src="<?php global $baseurl; echo $baseurl;?>img/afbeelding (8).png" class="planet" alt="" >    
-            <img src="<?php global $baseurl; echo $baseurl;?>img/afbeelding (9).png" class="planet" alt="" >    
-            <img src="<?php global $baseurl; echo $baseurl;?>img/afbeelding(2).png" class="planet" alt="" >    
-            <img src="<?php global $baseurl; echo $baseurl;?>img/afbeelding.png" class="planet" alt="" >     -->
+                <img src="img/afbeelding (1).png" onclick="clicker.clickPlanet()" class="planet" alt="" style="display: none;"   id="PlanetPlants">
+                <img src="img/afbeelding (3).png" onclick="clicker.clickPlanet()" class="planet" alt="" style="display: none;"   id="Icemelts">
+                <img src="img/afbeelding (4).png" onclick="clicker.clickPlanet()" class="planet" alt="" style="display: none;"   id="IceMoreLands">
+                <img src="img/afbeelding (5).png" onclick="clicker.clickPlanet()" class="planet" alt="" style="display: none;"   id="PlanetFire">
+                <img src="img/afbeelding (6).png" onclick="clicker.clickPlanet()" class="planet" alt="" style="display: none;"   id="FireBitWater">
+                <img src="img/afbeelding (7).png" onclick="clicker.clickPlanet()" class="planet" alt="" style="display: none;"   id="FireMoreWater">
+                <img src="img/afbeelding (8).png" onclick="clicker.clickPlanet()" class="planet" alt="" style="display: none;"   id="FireWaterLand">
+                <img src="img/afbeelding (9).png" onclick="clicker.clickPlanet()" class="planet" alt="" style="display: none;"   id="FireEvenMoreLand">
+                <img src="img/afbeelding(2).png"  onclick="clicker.clickPlanet()" class="planet" alt="" style="display: inline;" id="PlanetIce">
+                <img src="img/afbeelding.png"     onclick="clicker.clickPlanet()" class="planet" alt="" style="display: none;"   id="PlanetEarth">
             </div>
-            <div class="progress-bar"><div class="progress"></div></div>
+            <!-- <div class="progress-bar">
+                <div class="progress"></div>
+            </div> -->
         </div>
         <div class="stats">
             <div id="heat">Total Heat: 0 pK</div>
-            <div id="presure">Total Pressure: 0  nPa</div>
-            <div id="biomass">Total Biomass: 0 g</div>  
+            <div id="presure">Total Pressure: 0&nbsp;nPa</div>
+            
+            <div id="biomass">Total Biomass: 0 g</div>
         </div>
         <?php
         include 'clicker/clicker.php';
@@ -48,6 +54,7 @@
         include 'Upgrades/upgrade.php';
         include 'Shop/shop.php';
         ?>
-    </footer>     
+    </footer>
 </body>
+
 </html>
