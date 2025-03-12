@@ -40,12 +40,15 @@ class Clicker {
             this.biomass = biomass;
         }
     }
+
+    reset() {
+        this.presure = 0;
+        this.heat = 0;
+        this.biomass = 0;
+        this.saveState();
+    }
 }
 
-// Maak een nieuwe Clicker-instantie
+
 let clicker = new Clicker();
 
-// Voeg een eventlistener toe voor klikken
-// document.addEventListener('click', () => {
-//     clicker.clickPlanet();
-// });
