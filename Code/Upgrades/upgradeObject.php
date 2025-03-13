@@ -205,7 +205,7 @@ echo '</script>';
 
     document.addEventListener("DOMContentLoaded", () => {
         const resetButton = document.createElement('button');
-        resetButton.textContent = "Reset Game";
+        resetButton.textContent = "Reset Game (Upgrades)";
         resetButton.onclick = resetGame;
         document.body.appendChild(resetButton);
 
