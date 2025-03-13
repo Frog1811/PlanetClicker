@@ -203,6 +203,58 @@ echo '</script>';
         document.getElementById('TreeSpreader').innerHTML = `Owned: 0 <br> Price: 1000 Pressure<br> Tree Spreader`;
     }
 
+    function activateCheat() {
+        T1_drill.owned += 100;
+        T2_drill.owned += 100;
+        T3_drill.owned += 100;
+        T1_heater.owned += 100;
+        T2_heater.owned += 100;
+        T3_heater.owned += 100;
+        SeedGrower.owned += 100;
+        BiomassGen.owned += 100;
+        TreeSpreader.owned += 100;
+
+        T1_drill.power = T1_drill.owned * T1_drill.CPS;
+        T2_drill.power = T2_drill.owned * T2_drill.CPS;
+        T3_drill.power = T3_drill.owned * T3_drill.CPS;
+        T1_heater.power = T1_heater.owned * T1_heater.CPS;
+        T2_heater.power = T2_heater.owned * T2_heater.CPS;
+        T3_heater.power = T3_heater.owned * T3_heater.CPS;
+        SeedGrower.power = SeedGrower.owned * SeedGrower.CPS;
+        BiomassGen.power = BiomassGen.owned * BiomassGen.CPS;
+        TreeSpreader.power = TreeSpreader.owned * TreeSpreader.CPS;
+
+        document.getElementById('T1-drill').innerHTML = `Owned: ${T1_drill.owned} <br> Price: ${T1_drill.price} Heat<br> T1-Drill`;
+        document.getElementById('T2-drill').innerHTML = `Owned: ${T2_drill.owned} <br> Price: ${T2_drill.price} Heat<br> T2-Drill`;
+        document.getElementById('T3-drill').innerHTML = `Owned: ${T3_drill.owned} <br> Price: ${T3_drill.price} Heat<br> T3-Drill`;
+
+        document.getElementById('T1-heater').innerHTML = `Owned: ${T1_heater.owned} <br> Price: ${T1_heater.price} Biomass<br> T1-Heater`;
+        document.getElementById('T2-heater').innerHTML = `Owned: ${T2_heater.owned} <br> Price: ${T2_heater.price} Biomass<br> T2-Heater`;
+        document.getElementById('T3-heater').innerHTML = `Owned: ${T3_heater.owned} <br> Price: ${T3_heater.price} Biomass<br> T3-Heater`;
+
+        document.getElementById('SeedGrower').innerHTML = `Owned: ${SeedGrower.owned} <br> Price: ${SeedGrower.price} Pressure<br> Seed Grower`;
+        document.getElementById('BiomassGen').innerHTML = `Owned: ${BiomassGen.owned} <br> Price: ${BiomassGen.price} Pressure<br> Biomass Generator`;
+        document.getElementById('TreeSpreader').innerHTML = `Owned: ${TreeSpreader.owned} <br> Price: ${TreeSpreader.price} Pressure<br> Tree Spreader`;
+
+        saveUpgrades();
+        alert("Cheat activated! All upgrades increased by 100.");
+    }
+
+    let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyA', 'KeyB'];
+    let konamiIndex = 0;
+
+    document.addEventListener('keydown', (event) => {
+        if (event.code === konamiCode[konamiIndex]) {
+            konamiIndex++;
+            if (konamiIndex === konamiCode.length) {
+                activateCheat();
+                konamiIndex = 0;
+            }
+        } else {
+            konamiIndex = 0;
+        }
+    });
+
     document.addEventListener("DOMContentLoaded", () => {
         const resetButton = document.createElement('button');
         resetButton.textContent = "Reset Game (Upgrades)";
