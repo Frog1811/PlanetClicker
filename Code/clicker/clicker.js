@@ -16,5 +16,5 @@ class Clicker {
         console.log('-----------');
     }
 }
-let click2 = new Clicker(0, 0, 0);
+// let click2 = new Clicker(0, 0, 0);
 let click = new Clicker(0, 0, 0);
