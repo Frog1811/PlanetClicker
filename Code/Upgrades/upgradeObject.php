@@ -53,7 +53,7 @@ echo '</script>';
 
 
     function incrementOwnedT1_drill() {
-        if (click.heat >= T1_drill.price) {
+        if (clicker.heat >= T1_drill.price) {
             T1_drill.owned++;
             T1_drill.power = T1_drill.owned * T1_drill.CPS;
             T1_drill.price = (T1_drill.price * 1.5).toFixed(0);
@@ -63,7 +63,7 @@ echo '</script>';
     }
 
     function incrementOwnedT2_drill() {
-        if (click.heat >= T2_drill.price) {
+        if (clicker.heat >= T2_drill.price) {
             T2_drill.owned++;
             T2_drill.power = T2_drill.owned * T2_drill.CPS;
             T2_drill.price = (T2_drill.price * 1.5).toFixed(0);
@@ -73,7 +73,7 @@ echo '</script>';
     }
 
     function incrementOwnedT3_drill() {
-        if (click.heat >= T3_drill.price) {
+        if (clicker.heat >= T3_drill.price) {
             T3_drill.owned++;
             T3_drill.power = T3_drill.owned * T3_drill.CPS;
             T3_drill.price = (T3_drill.price * 1.5).toFixed(0);
@@ -83,7 +83,7 @@ echo '</script>';
     }
 
     function incrementOwnedT1_heater() {
-        if (click.biomass >= T1_heater.price) {
+        if (clicker.biomass >= T1_heater.price) {
             T1_heater.owned++;
             T1_heater.power = T1_heater.owned * T1_heater.CPS;
             T1_heater.price = (T1_heater.price * 1.5).toFixed(0);
@@ -93,7 +93,7 @@ echo '</script>';
     }
 
     function incrementOwnedT2_heater() {
-        if (click.biomass >= T2_heater.price) {
+        if (clicker.biomass >= T2_heater.price) {
             T2_heater.owned++;
             T2_heater.power = T2_heater.owned * T2_heater.CPS;
             T2_heater.price = (T2_heater.price * 1.5).toFixed(0);
@@ -103,7 +103,7 @@ echo '</script>';
     }
 
     function incrementOwnedT3_heater() {
-        if (click.biomass >= T3_heater.price) {
+        if (clicker.biomass >= T3_heater.price) {
             T3_heater.owned++;
             T3_heater.power = T3_heater.owned * T3_heater.CPS;
             T3_heater.price = (T3_heater.price * 1.5).toFixed(0);
@@ -113,7 +113,7 @@ echo '</script>';
     }
 
     function incrementOwnedSeedGrower() {
-        if (click.presure >= SeedGrower.price) {
+        if (clicker.presure >= SeedGrower.price) {
             SeedGrower.owned++;
             SeedGrower.power = SeedGrower.owned * SeedGrower.CPS;
             SeedGrower.price = (SeedGrower.price * 1.5).toFixed(0);
@@ -123,7 +123,7 @@ echo '</script>';
     }
 
     function incrementOwnedBiomassGen() {
-        if (click.presure >= BiomassGen.price) {
+        if (clicker.presure >= BiomassGen.price) {
             BiomassGen.owned++;
             BiomassGen.power = BiomassGen.owned * BiomassGen.CPS;
             BiomassGen.price = (BiomassGen.price * 1.5).toFixed(0);
@@ -133,7 +133,7 @@ echo '</script>';
     }
 
     function incrementOwnedTreeSpreader() {
-        if (click.presure >= TreeSpreader.price) {
+        if (clicker.presure >= TreeSpreader.price) {
             TreeSpreader.owned++;
             TreeSpreader.power = TreeSpreader.owned * TreeSpreader.CPS;
             TreeSpreader.price = (TreeSpreader.price * 1.5).toFixed(0);
@@ -144,22 +144,22 @@ echo '</script>';
 
     function automatedpressure() {
         setInterval(() => {
-            click.presure += T1_drill.power + T2_drill.power + T3_drill.power;
-            document.getElementById('presure').textContent = `Total Pressure: ${click.presure} nPa`;
+            clicker.presure += T1_drill.power + T2_drill.power + T3_drill.power;
+            document.getElementById('presure').textContent = `Total Pressure: ${clicker.presure} nPa`;
         }, 1000);
     }
 
     function automatedheat() {
         setInterval(() => {
-            click.heat += T1_heater.power + T2_heater.power + T3_heater.power;
-            document.getElementById('heat').textContent = `Total Heat: ${click.heat} pK`;
+            clicker.heat += T1_heater.power + T2_heater.power + T3_heater.power;
+            document.getElementById('heat').textContent = `Total Heat: ${clicker.heat} pK`;
         }, 1000);
     }
 
     function automatedBio() {
         setInterval(() => {
-            click.biomass += SeedGrower.power + BiomassGen.power + TreeSpreader.power;
-            document.getElementById('biomass').textContent = `Total Biomass: ${click.biomass} g`;
+            clicker.biomass += SeedGrower.power + BiomassGen.power + TreeSpreader.power;
+            document.getElementById('biomass').textContent = `Total Biomass: ${clicker.biomass} g`;
         }, 1000);
     }
 
@@ -181,14 +181,14 @@ echo '</script>';
         TreeSpreader = new Upgrade(60, "Biomass", 0, 0, 1000);
 
         // Reset resource counts
-        click.presure = 0;
-        click.heat = 0;
-        click.biomass = 0;
+        clicker.presure = 0;
+        clicker.heat = 0;
+        clicker.biomass = 0;
 
         // Update UI
-        document.getElementById('presure').textContent = `Total Pressure: ${click.presure} nPa`;
-        document.getElementById('heat').textContent = `Total Heat: ${click.heat} pK`;
-        document.getElementById('biomass').textContent = `Total Biomass: ${click.biomass} g`;
+        document.getElementById('presure').textContent = `Total Pressure: ${clicker.presure} nPa`;
+        document.getElementById('heat').textContent = `Total Heat: ${clicker.heat} pK`;
+        document.getElementById('biomass').textContent = `Total Biomass: ${clicker.biomass} g`;
 
         document.getElementById('T1-drill').innerHTML = `Owned: 0 <br> Price: 20 Heat<br> T1-Drill`;
         document.getElementById('T2-drill').innerHTML = `Owned: 0 <br> Price: 200 Heat<br> T2-Drill`;

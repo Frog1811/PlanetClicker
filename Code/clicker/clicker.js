@@ -17,4 +17,4 @@ class Clicker {
     }
 }
 let click2 = new Clicker(0, 0, 0);
-let click = new Clicker(0, 0, 0);
+let clicker = new Clicker(0, 0, 0);

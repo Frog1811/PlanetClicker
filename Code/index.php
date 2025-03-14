@@ -21,7 +21,7 @@
         </div>
         <div class="game-area">
             <div class="planet">
-                <img src="img/afbeelding (1).png" onclick="console.log(click)" class="planet" alt="" style="display: block;">
+                <img src="img/afbeelding (1).png" onclick="console.log(clicker.clickPlanet())" class="planet" alt="" style="display: block;">
                 <img src="img/afbeelding (3).png" class="planet" alt="" style="display: none;">
                 <!-- <img src="<?php global $baseurl; echo $baseurl;?>img/afbeelding (4).png" class="planet" alt="">
                 <img src="<?php global $baseurl; echo $baseurl;?>img/afbeelding (5).png" class="planet" alt="">
