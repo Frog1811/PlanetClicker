@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planet Game</title>
     <link rel="stylesheet" href="main.css">
-    <?php require_once(__DIR__.'/config.php');?>
-    <script src="<?php global $baseurl; echo $baseurl; ?>clicker/clicker.js"></script>
 </head>
 <body>
     <div class="title">Planet Clicker</div>
@@ -21,7 +19,7 @@
         </div>
         <div class="game-area">
             <div class="planet">
-                <img src="img/afbeelding (1).png" onclick="console.log(click)" class="planet" alt="" style="display: block;">
+                <img src="img/afbeelding (1).png" onclick="clicker.clickPlanet()" class="planet" alt="" style="display: block;">
                 <img src="img/afbeelding (3).png" class="planet" alt="" style="display: none;">
                 <!-- <img src="<?php global $baseurl; echo $baseurl;?>img/afbeelding (4).png" class="planet" alt="">
                 <img src="<?php global $baseurl; echo $baseurl;?>img/afbeelding (5).png" class="planet" alt="">
