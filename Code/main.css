@@ -117,13 +117,34 @@ footer {
 .shop {
     background: #1b1f4a;
     border-radius: 10px;
-    max-width: 10vh;
-    min-width: 50vh;
-    max-height: 32vh;
-    min-height: 32vh;
     display: flex;
-    justify-content: center;
+    width: 50vh;
+    height: 30vh;
+    flex-direction: column;
     align-items: center;
     margin-left: auto;
     margin-right: 3vh;
+    padding: 2vh;
+}
+
+.shop b {
+    font-size: 2.4vh;
+    margin-bottom: 2vh;
+    color: #ffcc00;
+}
+
+.items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vh;
+}
+
+.item {
+    background: #222b5f;
+    border-radius: 1vh;
+    padding: 1vh;
+    width: 10vh;
+    height: 5vh;
+    text-align: center;
+    color: white;
 }
