@@ -1,4 +1,6 @@
-<?php include 'upgradeObject.php'; ?>
+<script>
+    <?php include 'clickerUpgrade.js'; ?>
+</script>
 <div class="upgradeField">
     <div class="heatUpgrades">
         <b>Pressure Upgrades</b>
