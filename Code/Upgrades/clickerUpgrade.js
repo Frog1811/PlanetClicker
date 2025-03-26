@@ -266,7 +266,7 @@ document.addEventListener('keydown', (event) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    const resetButton = document.createElement('button');
+    const resetButton = document.createElement('button');xamp
     resetButton.textContent = "Reset Game (Upgrades)";
     resetButton.onclick = resetGame;
     document.body.appendChild(resetButton);

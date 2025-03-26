@@ -48,6 +48,9 @@
         <?php
         include 'clicker/clicker.php';
         ?>
+        <script>
+            <?php include 'confetti.js'; ?>
+        </script>
     </div>
     <footer>
         <?php

@@ -54,6 +54,7 @@ if(clicker.presure >= 900000 && clicker.heat >= 900000 && clicker.biomass >= 900
     document.getElementById("PlanetPlants").style.display = "none";
 }
 }
+
 document.addEventListener("DOMContentLoaded", function() {
     init();
     Planet();
