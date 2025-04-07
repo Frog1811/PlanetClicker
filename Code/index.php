@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planet Game</title>
     <link rel="stylesheet" href="main.css">
-    <?php require_once(__DIR__ . '/config.php'); ?>
-    <script src="<?php global $baseurl;
-                    echo $baseurl; ?>clicker/clicker.js"></script>
 </head>
 
 <body>
@@ -42,15 +39,10 @@
         <div class="stats">
             <div id="heat">Total Heat: 0 pK</div>
             <div id="presure">Total Pressure: 0&nbsp;nPa</div>
-            
             <div id="biomass">Total Biomass: 0 g</div>
         </div>
-        <?php
-        include 'clicker/clicker.php';
-        ?>
-        <script>
-            <?php include 'confetti.js'; ?>
-        </script>
+        <script src="clicker/clicker.js"></script>
+        <script src="confetti.js"></script>
     </div>
     <footer>
         <?php
