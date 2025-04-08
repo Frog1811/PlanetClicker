@@ -15,11 +15,11 @@
     <div class="title">Planet Clicker</div>
     <div class="container">
         <div class="menu">
-            <button>Specific mail</button>
+            <button onclick="pressureMultiplierT3()">yuutgtyt mail</button>
             <button>Specific mail</button>
             <button>Specific mail</button>
             <button>Send Heat rocket - x2 mult</button>
-            <button>Send Pressure rocket - x2 mult</button>
+            <button onclick="pressureMultiplier()">Send Pressure rocket - x2 mult</button>
             <button>Send Plants rocket - x2 mult</button>
         </div>
         <div class="game-area">

@@ -4,29 +4,33 @@ class Upgrade {
     owned;
     power;
     price;
+    mult;
+    multprice;
 
 
-    constructor(CPS, type, owned, power, price) {
+    constructor(CPS, type, owned, power, price, mult, multprice) {
         this.CPS = CPS;
         this.type = type
         this.owned = owned;
         this.power = power;
         this.price = price;
+        this.mult = mult;
+        this.multprice = multprice;
     }
 
 }
 
-let T1_drill = new Upgrade(5, "Pressure", 0, 0, 20);
+let T1_drill = new Upgrade(5, "Pressure", 0, 0, 20, 1, 10);
 let T2_drill = new Upgrade(20, "Pressure", 0, 0, 200);
-let T3_drill = new Upgrade(60, "Pressure", 0, 0, 1000);
+let T3_drill = new Upgrade(60, "Pressure", 0, 0, 1000, 1);
 
-let T1_heater = new Upgrade(5, "Heat", 0, 0, 20);
+let T1_heater = new Upgrade(5, "Heat", 0, 0, 20, 1);
 let T2_heater = new Upgrade(20, "Heat", 0, 0, 200);
-let T3_heater = new Upgrade(60, "Heat", 0, 0, 1000);
+let T3_heater = new Upgrade(60, "Heat", 0, 0, 1000, 1);
 
-let SeedGrower = new Upgrade(5, "Biomass", 0, 0, 20);
+let SeedGrower = new Upgrade(5, "Biomass", 0, 0, 20, 1);
 let BiomassGen = new Upgrade(20, "Biomass", 0, 0, 200);
-let TreeSpreader = new Upgrade(60, "Biomass", 0, 0, 1000);
+let TreeSpreader = new Upgrade(60, "Biomass", 0, 0, 1000, 1);
 
 function saveUpgrades() {
     const upgrades = { T1_drill, T2_drill, T3_drill, T1_heater, T2_heater, T3_heater, SeedGrower, BiomassGen, TreeSpreader };
@@ -152,23 +156,37 @@ function incrementOwnedTreeSpreader() {
     }
 }
 
+function pressureMultiplier() {
+    if(T1_drill.mult >= 10) {
+    console.log("Pressure Multiplier activated!");
+    T1_drill.mult ++;  
+    console.log(`T1 Drill Multiplier: ${T1_drill.mult}`)
+}
+}
+
+function pressureMultiplierT3() {
+    console.log("Pressure Multiplier activated!");
+    T3_drill.mult ++;  
+    console.log(`T3 Drill Multiplier: ${T3_drill.mult}`);
+}
+
 function automatedpressure() {
     setInterval(() => {
-        clicker.presure += T1_drill.power + T2_drill.power + T3_drill.power;
+        clicker.presure += T1_drill.mult * T1_drill.power + T2_drill.power + T3_drill.power;
         document.getElementById('presure').textContent = `Total Pressure: ${clicker.presure} nPa`;
     }, 1000);
 }
 
 function automatedheat() {
     setInterval(() => {
-        clicker.heat += T1_heater.power + T2_heater.power + T3_heater.power;
+        clicker.heat += T1_heater.power + T2_heater.power + T3_heater.power * T1_heater.mult;
         document.getElementById('heat').textContent = `Total Heat: ${clicker.heat} pK`;
     }, 1000);
 }
 
 function automatedBio() {
     setInterval(() => {
-        clicker.biomass += SeedGrower.power + BiomassGen.power + TreeSpreader.power;
+        clicker.biomass += SeedGrower.power + BiomassGen.power + TreeSpreader.power * SeedGrower.mult;
         document.getElementById('biomass').textContent = `Total Biomass: ${clicker.biomass} g`;
     }, 1000);
 }
@@ -276,3 +294,4 @@ document.addEventListener("DOMContentLoaded", () => {
     automatedheat();
     automatedBio();
 });
+
