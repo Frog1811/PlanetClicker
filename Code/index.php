@@ -38,7 +38,7 @@
         </div>
         <div class="stats">
             <div id="heat">Total Heat: 0 pK</div>
-            <div id="presure">Total Pressure: 0&nbsp;nPa</div>
+            <div id="presure">Total Pressure: 0 nPa</div>
             <div id="biomass">Total Biomass: 0 g</div>
         </div>
         <script src="clicker/clicker.js"></script>
