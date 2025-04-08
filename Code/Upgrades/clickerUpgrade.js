@@ -32,6 +32,8 @@ let SeedGrower = new Upgrade(5, "Biomass", 0, 0, 20, 1);
 let BiomassGen = new Upgrade(20, "Biomass", 0, 0, 200);
 let TreeSpreader = new Upgrade(60, "Biomass", 0, 0, 1000, 1);
 
+// ---------------------------------------------------------------------------------------------------------------------------
+
 function saveUpgrades() {
     const upgrades = { T1_drill, T2_drill, T3_drill, T1_heater, T2_heater, T3_heater, SeedGrower, BiomassGen, TreeSpreader };
     localStorage.setItem('upgrades', JSON.stringify(upgrades));
@@ -64,7 +66,21 @@ function loadUpgrades() {
     }
 }
 
+// ---------------------------------------------------------------------------------------------------------------------------
 
+function pressureMultiplier() {
+    console.log("Pressure Multiplier activated!");
+    T1_drill.mult ++;  
+    console.log(`Drill Multiplier: ${T1_drill.mult}`)
+}
+
+function pressureMultiplierT3() {
+    console.log("Pressure Multiplier activated!");
+    T3_drill.mult ++;  
+    console.log(`T3 Drill Multiplier: ${T3_drill.mult}`);
+}
+
+// ---------------------------------------------------------------------------------------------------------------------------
 
 function incrementOwnedT1_drill() {
     if (clicker.heat >= T1_drill.price) {
@@ -117,13 +133,11 @@ function incrementOwnedT2_heater() {
 }
 
 function incrementOwnedT3_heater() {
-    if (clicker.biomass >= T3_heater.price) {
-        T3_heater.owned++;
-        T3_heater.power = T3_heater.owned * T3_heater.CPS;
-        T3_heater.price = (T3_heater.price * 1.5).toFixed(0);
-        document.getElementById('T3-heater').innerHTML = `Owned: ${T3_heater.owned} <br> Price: ${T3_heater.price} Biomass<br> T3-Heater`;
-        saveUpgrades();
-    }
+    T3_heater.owned++;
+    T3_heater.power = T3_heater.mult * T3_heater.owned * T3_heater.CPS;
+    T3_heater.price = (T3_heater.price * 1.5).toFixed(0);
+    document.getElementById('T3-heater').innerHTML = `Owned: ${T3_heater.owned} <br> Price: ${T3_heater.price} Biomass<br> T3-Heater`;
+    saveUpgrades();
 }
 
 function incrementOwnedSeedGrower() {
@@ -156,23 +170,12 @@ function incrementOwnedTreeSpreader() {
     }
 }
 
-function pressureMultiplier() {
-    if(T1_drill.mult >= 10) {
-    console.log("Pressure Multiplier activated!");
-    T1_drill.mult ++;  
-    console.log(`T1 Drill Multiplier: ${T1_drill.mult}`)
-}
-}
-
-function pressureMultiplierT3() {
-    console.log("Pressure Multiplier activated!");
-    T3_drill.mult ++;  
-    console.log(`T3 Drill Multiplier: ${T3_drill.mult}`);
-}
+// ---------------------------------------------------------------------------------------------------------------------------
 
 function automatedpressure() {
     setInterval(() => {
-        clicker.presure += T1_drill.mult * T1_drill.power + T2_drill.power + T3_drill.power;
+        Drill3 = T3_drill.mult * T3_drill.power;
+        clicker.presure += T1_drill.mult * T1_drill.power + T2_drill.power + Drill3;
         document.getElementById('presure').textContent = `Total Pressure: ${clicker.presure} nPa`;
     }, 1000);
 }
@@ -190,6 +193,8 @@ function automatedBio() {
         document.getElementById('biomass').textContent = `Total Biomass: ${clicker.biomass} g`;
     }, 1000);
 }
+
+// ---------------------------------------------------------------------------------------------------------------------------
 
 function resetGame() {
     // Clear saved data
@@ -230,6 +235,8 @@ function resetGame() {
     document.getElementById('BiomassGen').innerHTML = `Owned: 0 <br> Price: 200 Pressure<br> Biomass Generator`;
     document.getElementById('TreeSpreader').innerHTML = `Owned: 0 <br> Price: 1000 Pressure<br> Tree Spreader`;
 }
+
+// ---------------------------------------------------------------------------------------------------------------------------
 
 function activateCheat() {
     T1_drill.owned += 100;
@@ -282,6 +289,8 @@ document.addEventListener('keydown', (event) => {
         konamiIndex = 0;
     }
 });
+
+// ---------------------------------------------------------------------------------------------------------------------------
 
 document.addEventListener("DOMContentLoaded", () => {
     const resetButton = document.createElement('button');
