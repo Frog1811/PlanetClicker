@@ -1,7 +1,6 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #0b0f2c;
     color: white;
     overflow-x: hidden;
     overflow-y: hidden;
@@ -148,9 +147,10 @@ footer {
 .item {
     background: #222b5f;
     border-radius: 1vh;
+    font-size: 12px;
     padding: 1vh;
     width: 10vh;
-    height: 5vh;
+    height: 6vh;
     text-align: center;
     color: white;
 }
