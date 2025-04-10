@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <script src="event.js"></script>
     <div class="title">Planet Clicker</div>
     <div class="container">
         <div class="menu">
