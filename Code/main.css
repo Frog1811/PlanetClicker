@@ -1,7 +1,6 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #0b0f2c;
     color: white;
     overflow-x: hidden;
     overflow-y: hidden;
@@ -148,9 +147,10 @@ footer {
 .item {
     background: #222b5f;
     border-radius: 1vh;
+    font-size: 12px;
     padding: 1vh;
     width: 10vh;
-    height: 5vh;
+    height: 6vh;
     text-align: center;
     color: white;
 }
@@ -170,6 +170,37 @@ footer {
     border-radius: 50%;
     pointer-events: none;
 }
+
+.random-popup-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s ease;
+}
+
+.random-popup-btn:hover {
+    background-color: #45a049;
+}
+
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 
 
  
