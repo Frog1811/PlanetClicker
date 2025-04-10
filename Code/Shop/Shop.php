@@ -56,8 +56,44 @@
 
             document.getElementById("bg9").addEventListener("click", () => {
                 if (clicker.presure >= 2000) {
-                    document.body.style.backgroundColor = "#8a77e3";
-                }
+                    const overlay = document.createElement("div");
+                    overlay.className = "video-overlay";
+
+                    const video = document.createElement("video");
+                    video.src = "img/never.mp4";
+                    video.autoplay = true;
+                    video.controls = false;
+                    video.style.width = "100%";
+                    video.style.height = "100%";
+                    video.style.objectFit = "cover";
+
+                    overlay.appendChild(video);
+                    document.body.appendChild(overlay);
+
+                    const disableRefresh = (e) => {
+                        e.preventDefault();
+                        e.returnValue = '';
+                    };
+                    window.addEventListener('beforeunload', disableRefresh);
+
+                    const keyBlocker = (e) => {
+                        if (
+                            e.key === "F5" ||
+                            (e.ctrlKey && e.key === "r") ||
+                            (e.metaKey && e.key === "r")
+                        ) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                        }
+                    };
+                    window.addEventListener("keydown", keyBlocker, true);
+
+                    // 🎬 Cleanup when video ends
+                    video.addEventListener("ended", () => {
+                        document.body.removeChild(overlay);
+                        window.removeEventListener('beforeunload', disableRefresh);
+                        window.removeEventListener("keydown", keyBlocker, true);
+                    });                }
             });
         });
     </script>
