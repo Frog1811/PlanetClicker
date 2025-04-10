@@ -1,7 +1,7 @@
 let buttonActive = false;
 
 document.addEventListener("click", () => {
-    if (buttonActive || Math.random() >= 0.5) return;
+    if (buttonActive || Math.random() >= 0.15) return;
 
     const button = document.createElement("button");
     button.textContent = "Click Me!";
