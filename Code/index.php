@@ -12,12 +12,13 @@
     <div class="title">Planet Clicker</div>
     <div class="container">
         <div class="menu">
-            <button onclick="pressureMultiplierT3()">yuutgtyt mail</button>
-            <button>Specific mail</button>
-            <button>Specific mail</button>
-            <button>Send Heat rocket - x2 mult</button>
-            <button onclick="pressureMultiplier()">Send Pressure rocket - x2 mult</button>
-            <button>Send Plants rocket - x2 mult</button>
+
+            <button onclick="heatMultiplier()" id="heatmult1">Send Heat rocket</button>
+            <button onclick="pressureMultiplier()" id="drillmult1">Send Pressure rocket</button>
+            <button onclick="biomassMultiplier()" id="biomult1">Send Plants rocket</button>
+            <button onclick="pressureMultiplierT3()" id="drillmult2" >Tier 3 Pressure mult </button>
+            <button onclick ="heatMultiplierT3()" id="heatmult2">Tier 3 Heat mult</button>
+            <button onclick="biomassMultiplierT3()" id="biomult2">Tier 3 Biomass mult</button>
         </div>
         <div class="game-area">
             <div class="planet">
