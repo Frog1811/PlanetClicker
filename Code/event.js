@@ -41,14 +41,12 @@ document.addEventListener("click", () => {
         overlay.appendChild(video);
         document.body.appendChild(overlay);
 
-        // 🔒 Disable refresh
         const disableRefresh = (e) => {
             e.preventDefault();
             e.returnValue = '';
         };
         window.addEventListener('beforeunload', disableRefresh);
 
-        // Block F5 / Ctrl+R / Cmd+R
         const keyBlocker = (e) => {
             if (
                 e.key === "F5" ||
