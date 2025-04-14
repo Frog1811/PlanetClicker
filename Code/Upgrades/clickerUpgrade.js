@@ -23,20 +23,29 @@ class Upgrade {
         }
         if (typeof saveUpgrades === "function") saveUpgrades();
     }
+
+    startAutomation() {
+        setInterval(() => {
+            let generated = this.power * this.mult;
+                    clicker[this.type] += generated;
+                    document.getElementById(this.type).textContent = `Total ${this.type}: ${clicker[this.type]}`;
+        }, 1000);
+    }
 }
 
 
-let T1_drill = new Upgrade("T1-drill", 5, "Pressure", 0, 0, 20, "Heat", 1, 100);
-let T2_drill = new Upgrade("T2-drill", 20, "Pressure", 0, 0, 200, "Heat" );
-let T3_drill = new Upgrade("T3-drill", 60, "Pressure", 0, 0, 1000, "Heat", 1, 100);
 
-let T1_heater = new Upgrade("T1-Heater", 5, "Heat", 0, 0, 20, "Biomass", 1, 100);
-let T2_heater = new Upgrade("T2-Heater", 20, "Heat", 0, 0, 200, "Biomass");
-let T3_heater = new Upgrade("T3-Heater", 60, "Heat", 0, 0, 1000, "Biomass", 1, 100);
+let T1_drill = new Upgrade("T1-drill", 5, "presure", 0, 0, 20, "Heat", 1, 100);
+let T2_drill = new Upgrade("T2-drill", 20, "presure", 0, 0, 200, "Heat" );
+let T3_drill = new Upgrade("T3-drill", 60, "presure", 0, 0, 1000, "Heat", 1, 100);
 
-let SeedGrower = new Upgrade("Seed-Grower", 5, "Biomass", 0, 0, 20, "pressure", 1, 100);
-let BiomassGen = new Upgrade("Biomass-Generator", 20, "Biomass", 0, 0, 200, "pressure");
-let TreeSpreader = new Upgrade("Tree-Spreader", 60, "Biomass", 0, 0, 1000, "pressure", 1, 100);
+let T1_heater = new Upgrade("T1-Heater", 5, "heat", 0, 0, 20, "Biomass", 1, 100);
+let T2_heater = new Upgrade("T2-Heater", 20, "heat", 0, 0, 200, "Biomass");
+let T3_heater = new Upgrade("T3-Heater", 60, "heat", 0, 0, 1000, "Biomass", 1, 100);
+
+let SeedGrower = new Upgrade("Seed-Grower", 5, "biomass", 0, 0, 20, "pressure", 1, 100);
+let BiomassGen = new Upgrade("Biomass-Generator", 20, "biomass", 0, 0, 200, "pressure");
+let TreeSpreader = new Upgrade("Tree-Spreader", 60, "biomass", 0, 0, 1000, "pressure", 1, 100);
 
 // ---------------------------------------------------------------------------------------------------------------------------
 
@@ -115,7 +124,6 @@ function biomassMultiplier() {
     saveUpgrades();
 }
 }
-// ---------------------------------------------------------------------------------------------------------------------------
 function pressureMultiplierT3(){
     if (clicker.presure >= T3_drill.multprice) {
     console.log("Pressure Multiplier activated!");
@@ -146,31 +154,6 @@ function biomassMultiplierT3() {
     saveUpgrades();
     }
 }
-
-function automatedpressure() {
-    setInterval(() => {
-        Drill3 = T3_drill.mult * T3_drill.power;
-        clicker.presure += T1_drill.mult * T1_drill.power + T2_drill.power + Drill3;
-        document.getElementById('presure').textContent = `Total Pressure: ${clicker.presure} nPa`;
-    }, 1000);
-}
-
-function automatedheat() {
-    setInterval(() => {
-        Heater3 = T3_heater.mult * T3_heater.power;
-        clicker.heat += T1_heater.mult * T1_heater.power + T2_heater.power + T3_heater.power + Heater3;
-        document.getElementById('heat').textContent = `Total Heat: ${clicker.heat} pK`;
-    }, 1000);
-}
-
-function automatedBio() {
-    setInterval(() => {
-        BiomassGen3 = TreeSpreader.mult * TreeSpreader.power;
-        clicker.biomass += SeedGrower.mult * SeedGrower.power + BiomassGen.power + TreeSpreader.power * SeedGrower.mult + BiomassGen3;
-        document.getElementById('biomass').textContent = `Total Biomass: ${clicker.biomass} g`;
-    }, 1000);
-}
-
 // ---------------------------------------------------------------------------------------------------------------------------
 
 function resetGame() {
@@ -276,8 +259,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(resetButton);
 
     loadUpgrades();
-    automatedpressure();
-    automatedheat();
-    automatedBio();
+    [
+        T1_drill, T2_drill, T3_drill,
+        T1_heater, T2_heater, T3_heater,
+        SeedGrower, BiomassGen, TreeSpreader
+    ].forEach(upg => upg.startAutomation());
 });
 
