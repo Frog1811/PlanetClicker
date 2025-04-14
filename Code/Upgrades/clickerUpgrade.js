@@ -1,36 +1,42 @@
 class Upgrade {
-    CPS;
-    type;
-    owned;
-    power;
-    price;
-    mult;
-    multprice;
-
-
-    constructor(CPS, type, owned, power, price, mult, multprice) {
+    constructor(name, CPS, type, owned = 0, power = 0, price, priceType, mult = 1, multprice = 100) {
+        this.name = name;
         this.CPS = CPS;
-        this.type = type
+        this.type = type;
         this.owned = owned;
         this.power = power;
         this.price = price;
+        this.priceType = priceType;
         this.mult = mult;
         this.multprice = multprice;
     }
 
+    incrementOwned() {
+        this.owned++;
+        this.power = this.owned * this.CPS;
+        this.price = (this.price * 1.5).toFixed(0);
+        const elem = document.getElementById(this.name);
+        if (elem) {
+            elem.innerHTML = `Owned: ${this.owned}<br>Price: ${this.price} ${this.priceType}<br>${this.name}`;
+        } else {
+            console.warn(`Element with ID '${this.name}' not found.`);
+        }
+        if (typeof saveUpgrades === "function") saveUpgrades();
+    }
 }
 
-let T1_drill = new Upgrade(5, "Pressure", 0, 0, 20, 1, 100);
-let T2_drill = new Upgrade(20, "Pressure", 0, 0, 200);
-let T3_drill = new Upgrade(60, "Pressure", 0, 0, 1000, 1, 100);
 
-let T1_heater = new Upgrade(5, "Heat", 0, 0, 20, 1, 100);
-let T2_heater = new Upgrade(20, "Heat", 0, 0, 200);
-let T3_heater = new Upgrade(60, "Heat", 0, 0, 1000, 1, 100);
+let T1_drill = new Upgrade("T1-drill", 5, "Pressure", 0, 0, 20, "Heat", 1, 100);
+let T2_drill = new Upgrade("T2-drill", 20, "Pressure", 0, 0, 200, "Heat" );
+let T3_drill = new Upgrade("T3-drill", 60, "Pressure", 0, 0, 1000, "Heat", 1, 100);
 
-let SeedGrower = new Upgrade(5, "Biomass", 0, 0, 20, 1, 100);
-let BiomassGen = new Upgrade(20, "Biomass", 0, 0, 200);
-let TreeSpreader = new Upgrade(60, "Biomass", 0, 0, 1000, 1,100);
+let T1_heater = new Upgrade("T1-Heater", 5, "Heat", 0, 0, 20, "Biomass", 1, 100);
+let T2_heater = new Upgrade("T2-Heater", 20, "Heat", 0, 0, 200, "Biomass");
+let T3_heater = new Upgrade("T3-Heater", 60, "Heat", 0, 0, 1000, "Biomass", 1, 100);
+
+let SeedGrower = new Upgrade("Seed-Grower", 5, "Biomass", 0, 0, 20, "pressure", 1, 100);
+let BiomassGen = new Upgrade("Biomass-Generator", 20, "Biomass", 0, 0, 200, "pressure");
+let TreeSpreader = new Upgrade("Tree-Spreader", 60, "Biomass", 0, 0, 1000, "pressure", 1, 100);
 
 // ---------------------------------------------------------------------------------------------------------------------------
 
@@ -56,18 +62,18 @@ function loadUpgrades() {
         document.getElementById('T2-drill').innerHTML = `Owned: ${T2_drill.owned} <br> Price: ${T2_drill.price} Heat<br> T2-Drill`;
         document.getElementById('T3-drill').innerHTML = `Owned: ${T3_drill.owned} <br> Price: ${T3_drill.price} Heat<br> T3-Drill`;
 
-        document.getElementById('T1-heater').innerHTML = `Owned: ${T1_heater.owned} <br> Price: ${T1_heater.price} Biomass<br> T1-Heater`;
-        document.getElementById('T2-heater').innerHTML = `Owned: ${T2_heater.owned} <br> Price: ${T2_heater.price} Biomass<br> T2-Heater`;
-        document.getElementById('T3-heater').innerHTML = `Owned: ${T3_heater.owned} <br> Price: ${T3_heater.price} Biomass<br> T3-Heater`;
+        document.getElementById('T1-Heater').innerHTML = `Owned: ${T1_heater.owned} <br> Price: ${T1_heater.price} Biomass<br> T1-Heater`;
+        document.getElementById('T2-Heater').innerHTML = `Owned: ${T2_heater.owned} <br> Price: ${T2_heater.price} Biomass<br> T2-Heater`;
+        document.getElementById('T3-Heater').innerHTML = `Owned: ${T3_heater.owned} <br> Price: ${T3_heater.price} Biomass<br> T3-Heater`;
 
-        document.getElementById('SeedGrower').innerHTML = `Owned: ${SeedGrower.owned} <br> Price: ${SeedGrower.price} Pressure<br> Seed Grower`;
-        document.getElementById('BiomassGen').innerHTML = `Owned: ${BiomassGen.owned} <br> Price: ${BiomassGen.price} Pressure<br> Biomass Generator`;
-        document.getElementById('TreeSpreader').innerHTML = `Owned: ${TreeSpreader.owned} <br> Price: ${TreeSpreader.price} Pressure<br> Tree Spreader`;
+        document.getElementById('Seed-Grower').innerHTML = `Owned: ${SeedGrower.owned} <br> Price: ${SeedGrower.price} Pressure<br> Seed Grower`;
+        document.getElementById('Biomass-Generator').innerHTML = `Owned: ${BiomassGen.owned} <br> Price: ${BiomassGen.price} Pressure<br> Biomass Generator`;
+        document.getElementById('Tree-Spreader').innerHTML = `Owned: ${TreeSpreader.owned} <br> Price: ${TreeSpreader.price} Pressure<br> Tree Spreader`;
 
         document.getElementById('drillmult1').innerHTML = `Owned: ${T1_drill.mult} <br> Price: ${T1_drill.multprice} Pressure mult<br> T1-Heater`;
         document.getElementById('heatmult1').innerHTML = `Owned: ${T1_heater.mult} <br> Price: ${T1_heater.multprice} Heat mult<br> T1-Heater`;
         document.getElementById('biomult1').innerHTML = `Owned: ${SeedGrower.mult} <br> Price: ${SeedGrower.multprice} Biomass Mult<br> T1-Heater`;
-        
+
         document.getElementById('drillmult2').innerHTML = `Owned: ${T3_drill.mult} <br> Price: ${T3_drill.multprice} T3 Drill mult<br> T1-Heater`;
         document.getElementById('heatmult2').innerHTML = `Owned: ${T3_heater.mult} <br> Price: ${T3_heater.multprice} T3 Heat mult<br> T1-Heater`;
         document.getElementById('biomult2').innerHTML = `Owned: ${TreeSpreader.mult} <br> Price: ${TreeSpreader.multprice} Treespreader mult <br> T1-Heater`;
@@ -81,7 +87,7 @@ function pressureMultiplier() {
     if (clicker.presure >= T1_drill.multprice) {
     console.log("Pressure Multiplier activated!");
     T1_drill.mult ++;
-    T1_drill.multprice = (T1_drill.multprice * 1.5).toFixed(0);  
+    T1_drill.multprice = (T1_drill.multprice * 1.5).toFixed(0);
     console.log(`Drill Multiplier: ${T1_drill.mult}`)
     document.getElementById('drillmult1').innerHTML = `Owned: ${T1_drill.mult} <br> Price: ${T1_drill.multprice} Pressure mult<br> T1-Heater`;
     saveUpgrades();
@@ -113,7 +119,7 @@ function biomassMultiplier() {
 function pressureMultiplierT3(){
     if (clicker.presure >= T3_drill.multprice) {
     console.log("Pressure Multiplier activated!");
-    T3_drill.mult ++;  
+    T3_drill.mult ++;
     T3_drill.multprice = (T3_drill.multprice * 1.5).toFixed(0);
     console.log(`T3 Drill Multiplier: ${T3_drill.mult}`);
     document.getElementById('drillmult2').innerHTML = `Owned: ${T3_drill.mult} <br> Price: ${T3_drill.multprice} T3 Drill mult<br> T1-Heater`;
@@ -140,97 +146,6 @@ function biomassMultiplierT3() {
     saveUpgrades();
     }
 }
-// ---------------------------------------------------------------------------------------------------------------------------
-
-function incrementOwnedT1_drill() {
-    if (clicker.heat >= T1_drill.price) {
-        T1_drill.owned++;
-        T1_drill.power = T1_drill.owned * T1_drill.CPS;
-        T1_drill.price = (T1_drill.price * 1.5).toFixed(0);
-        document.getElementById('T1-drill').innerHTML = `Owned: ${T1_drill.owned} <br> Price: ${T1_drill.price} Heat<br> T1-Drill`;
-        saveUpgrades();
-    }
-}
-
-function incrementOwnedT2_drill() {
-    if (clicker.heat >= T2_drill.price) {
-        T2_drill.owned++;
-        T2_drill.power = T2_drill.owned * T2_drill.CPS;
-        T2_drill.price = (T2_drill.price * 1.5).toFixed(0);
-        document.getElementById('T2-drill').innerHTML = `Owned: ${T2_drill.owned} <br> Price: ${T2_drill.price} Heat<br> T2-Drill`;
-        saveUpgrades();
-    }
-}
-
-function incrementOwnedT3_drill() {
-    if (clicker.heat >= T3_drill.price) {
-        T3_drill.owned++;
-        T3_drill.power = T3_drill.owned * T3_drill.CPS;
-        T3_drill.price = (T3_drill.price * 1.5).toFixed(0);
-        document.getElementById('T3-drill').innerHTML = `Owned: ${T3_drill.owned} <br> Price: ${T3_drill.price} Heat<br> T3-Drill`;
-        saveUpgrades();
-    }
-}
-
-function incrementOwnedT1_heater() {
-    if (clicker.biomass >= T1_heater.price) {
-        T1_heater.owned++;
-        T1_heater.power = T1_heater.owned * T1_heater.CPS;
-        T1_heater.price = (T1_heater.price * 1.5).toFixed(0);
-        document.getElementById('T1-heater').innerHTML = `Owned: ${T1_heater.owned} <br> Price: ${T1_heater.price} Biomass<br> T1-Heater`;
-        saveUpgrades();
-    }
-}
-
-function incrementOwnedT2_heater() {
-    if (clicker.biomass >= T2_heater.price) {
-        T2_heater.owned++;
-        T2_heater.power = T2_heater.owned * T2_heater.CPS;
-        T2_heater.price = (T2_heater.price * 1.5).toFixed(0);
-        document.getElementById('T2-heater').innerHTML = `Owned: ${T2_heater.owned} <br> Price: ${T2_heater.price} Biomass<br> T2-Heater`;
-        saveUpgrades();
-    }
-}
-
-function incrementOwnedT3_heater() {
-    T3_heater.owned++;
-    T3_heater.power = T3_heater.mult * T3_heater.owned * T3_heater.CPS;
-    T3_heater.price = (T3_heater.price * 1.5).toFixed(0);
-    document.getElementById('T3-heater').innerHTML = `Owned: ${T3_heater.owned} <br> Price: ${T3_heater.price} Biomass<br> T3-Heater`;
-    saveUpgrades();
-}
-
-function incrementOwnedSeedGrower() {
-    if (clicker.presure >= SeedGrower.price) {
-        SeedGrower.owned++;
-        SeedGrower.power = SeedGrower.owned * SeedGrower.CPS;
-        SeedGrower.price = (SeedGrower.price * 1.5).toFixed(0);
-        document.getElementById('SeedGrower').innerHTML = `Owned: ${SeedGrower.owned} <br> Price: ${SeedGrower.price} Pressure<br> Seed Grower`;
-        saveUpgrades();
-    }
-}
-
-function incrementOwnedBiomassGen() {
-    if (clicker.presure >= BiomassGen.price) {
-        BiomassGen.owned++;
-        BiomassGen.power = BiomassGen.owned * BiomassGen.CPS;
-        BiomassGen.price = (BiomassGen.price * 1.5).toFixed(0);
-        document.getElementById('BiomassGen').innerHTML = `Owned: ${BiomassGen.owned} <br> Price: ${BiomassGen.price} Pressure<br> Biomass Generator`;
-        saveUpgrades();
-    }
-}
-
-function incrementOwnedTreeSpreader() {
-    if (clicker.presure >= TreeSpreader.price) {
-        TreeSpreader.owned++;
-        TreeSpreader.power = TreeSpreader.owned * TreeSpreader.CPS;
-        TreeSpreader.price = (TreeSpreader.price * 1.5).toFixed(0);
-        document.getElementById('TreeSpreader').innerHTML = `Owned: ${TreeSpreader.owned} <br> Price: ${TreeSpreader.price} Pressure<br> Tree Spreader`;
-        saveUpgrades();
-    }
-}
-
-// ---------------------------------------------------------------------------------------------------------------------------
 
 function automatedpressure() {
     setInterval(() => {
@@ -263,17 +178,17 @@ function resetGame() {
     localStorage.removeItem('upgrades');
 
     // Reinitialize upgrades
-    T1_drill = new Upgrade(5, "Pressure", 0, 0, 20);
-    T2_drill = new Upgrade(20, "Pressure", 0, 0, 200);
-    T3_drill = new Upgrade(60, "Pressure", 0, 0, 1000);
+    T1_drill = new Upgrade("T1-drill", 5, "Pressure", 0, 0, 20, "Heat", 1, 100);
+    T2_drill = new Upgrade("T2-drill", 20, "Pressure", 0, 0, 200, "Heat" );
+    T3_drill = new Upgrade("T3-drill", 60, "Pressure", 0, 0, 1000, "Heat", 1, 100);
 
-    T1_heater = new Upgrade(5, "Heat", 0, 0, 20);
-    T2_heater = new Upgrade(20, "Heat", 0, 0, 200);
-    T3_heater = new Upgrade(60, "Heat", 0, 0, 1000);
+    T1_heater = new Upgrade("T1-Heater", 5, "Heat", 0, 0, 20, "Biomass", 1, 100);
+    T2_heater = new Upgrade("T2-Heater", 20, "Heat", 0, 0, 200, "Biomass");
+    T3_heater = new Upgrade("T3-Heater", 60, "Heat", 0, 0, 1000, "Biomass", 1, 100);
 
-    SeedGrower = new Upgrade(5, "Biomass", 0, 0, 20);
-    BiomassGen = new Upgrade(20, "Biomass", 0, 0, 200);
-    TreeSpreader = new Upgrade(60, "Biomass", 0, 0, 1000);
+    SeedGrower = new Upgrade("Seed-Grower", 5, "Biomass", 0, 0, 20, "pressure", 1, 100);
+    BiomassGen = new Upgrade("Biomass-Generator", 20, "Biomass", 0, 0, 200, "pressure");
+    TreeSpreader = new Upgrade("Tree-Spreader", 60, "Biomass", 0, 0, 1000, "pressure", 1, 100);
 
     // Reset resource counts
     clicker.presure = 0;
@@ -289,13 +204,13 @@ function resetGame() {
     document.getElementById('T2-drill').innerHTML = `Owned: 0 <br> Price: 200 Heat<br> T2-Drill`;
     document.getElementById('T3-drill').innerHTML = `Owned: 0 <br> Price: 1000 Heat<br> T3-Drill`;
 
-    document.getElementById('T1-heater').innerHTML = `Owned: 0 <br> Price: 20 Biomass<br> T1-Heater`;
-    document.getElementById('T2-heater').innerHTML = `Owned: 0 <br> Price: 200 Biomass<br> T2-Heater`;
-    document.getElementById('T3-heater').innerHTML = `Owned: 0 <br> Price: 1000 Biomass<br> T3-Heater`;
+    document.getElementById('T1-Heater').innerHTML = `Owned: 0 <br> Price: 20 Biomass<br> T1-Heater`;
+    document.getElementById('T2-Heater').innerHTML = `Owned: 0 <br> Price: 200 Biomass<br> T2-Heater`;
+    document.getElementById('T3-Heater').innerHTML = `Owned: 0 <br> Price: 1000 Biomass<br> T3-Heater`;
 
-    document.getElementById('SeedGrower').innerHTML = `Owned: 0 <br> Price: 20 Pressure<br> Seed Grower`;
-    document.getElementById('BiomassGen').innerHTML = `Owned: 0 <br> Price: 200 Pressure<br> Biomass Generator`;
-    document.getElementById('TreeSpreader').innerHTML = `Owned: 0 <br> Price: 1000 Pressure<br> Tree Spreader`;
+    document.getElementById('Seed-Grower').innerHTML = `Owned: 0 <br> Price: 20 Pressure<br> Seed Grower`;
+    document.getElementById('Biomass-Generator').innerHTML = `Owned: 0 <br> Price: 200 Pressure<br> Biomass Generator`;
+    document.getElementById('Tree-Spreader').innerHTML = `Owned: 0 <br> Price: 1000 Pressure<br> Tree Spreader`;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------
@@ -361,8 +276,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(resetButton);
 
     loadUpgrades();
-    // saveMultipliers();
-    // loadMultipliers();
     automatedpressure();
     automatedheat();
     automatedBio();
