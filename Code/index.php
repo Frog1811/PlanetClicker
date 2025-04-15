@@ -14,12 +14,12 @@
     <div class="container">
         <div class="menu">
 
-            <button onclick="heatMultiplier()" id="heatmult1">Send Heat rocket</button>
-            <button onclick="pressureMultiplier()" id="drillmult1">Send Pressure rocket</button>
-            <button onclick="biomassMultiplier()" id="biomult1">Send Plants rocket</button>
-            <button onclick="pressureMultiplierT3()" id="drillmult2" >Tier 3 Pressure mult </button>
-            <button onclick ="heatMultiplierT3()" id="heatmult2">Tier 3 Heat mult</button>
-            <button onclick="biomassMultiplierT3()" id="biomult2">Tier 3 Biomass mult</button>
+            <button onclick="T1_heater.incrementMultiplier()" id="heatmult1">Owned: 1 <br> price: 0 <br> T1 Heater</button> <br>
+            <button onclick="T1_drill.incrementMultiplier()" id="drillmult1">Owned: 1 <br> price: 0 <br> T1 pressure</button> <br>
+            <button onclick="SeedGrower.incrementMultiplier()" id="biomult1">Owned: 1 <br> price: 0 <br> seed Grwoer</button> <br>
+            <button onclick="T3_drill.incrementMultiplier()" id="drillmult2" >Owned: 1 <br> price: 0 <br> all pressure</button> <br>
+            <button onclick ="T3_heater.incrementMultiplier()" id="heatmult2">Owned: 1 <br> price: 0 <br> all heat</button> <br>
+            <button onclick="TreeSpreader.incrementMultiplier()" id="biomult2">Owned: 1 <br> price: 0 <br> all Biomass</button> <br>
         </div>
         <div class="game-area">
             <div class="planet">

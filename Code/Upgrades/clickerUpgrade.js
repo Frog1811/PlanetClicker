@@ -1,5 +1,5 @@
 class Upgrade {
-    constructor(name, CPS, type, owned = 0, power = 0, price, priceType, mult = 1, multprice = 100) {
+    constructor(name, CPS, type, owned = 0, power = 0, price, priceType,multname , mult = 1, multprice = 100) {
         this.name = name;
         this.CPS = CPS;
         this.type = type;
@@ -7,6 +7,7 @@ class Upgrade {
         this.power = power;
         this.price = price;
         this.priceType = priceType;
+        this.multname = multname;
         this.mult = mult;
         this.multprice = multprice;
     }
@@ -24,6 +25,18 @@ class Upgrade {
         if (typeof saveUpgrades === "function") saveUpgrades();
     }
 
+    incrementMultiplier() {
+            this.mult++;
+            console.log(`${this.name} Multiplier: ${this.mult}`);
+            const elem = document.getElementById(this.multname);
+            if (elem) {
+                elem.innerHTML = `Owned: ${this.mult} <br> Price: ${this.multprice} ${this.type} mult<br> ${this.name}`;
+            } else {
+                console.warn(`Element with ID '${this.multname}' not found.`);
+            }
+            if (typeof saveUpgrades === "function") saveUpgrades();
+    }
+
     startAutomation() {
         setInterval(() => {
             let generated = this.power * this.mult;
@@ -35,17 +48,17 @@ class Upgrade {
 
 
 
-let T1_drill = new Upgrade("T1-drill", 5, "presure", 0, 0, 20, "Heat", 1, 100);
+let T1_drill = new Upgrade("T1-drill", 5, "presure", 0, 0, 20, "Heat", "drillmult1", 1, 100);
 let T2_drill = new Upgrade("T2-drill", 20, "presure", 0, 0, 200, "Heat" );
-let T3_drill = new Upgrade("T3-drill", 60, "presure", 0, 0, 1000, "Heat", 1, 100);
+let T3_drill = new Upgrade("T3-drill", 60, "presure", 0, 0, 1000, "Heat", "drillmult2", 1, 100);
 
-let T1_heater = new Upgrade("T1-Heater", 5, "heat", 0, 0, 20, "Biomass", 1, 100);
+let T1_heater = new Upgrade("T1-Heater", 5, "heat", 0, 0, 20, "Biomass", "heatmult1", 1, 100);
 let T2_heater = new Upgrade("T2-Heater", 20, "heat", 0, 0, 200, "Biomass");
-let T3_heater = new Upgrade("T3-Heater", 60, "heat", 0, 0, 1000, "Biomass", 1, 100);
+let T3_heater = new Upgrade("T3-Heater", 60, "heat", 0, 0, 1000, "Biomass", "heatmult2", 1, 100);
 
-let SeedGrower = new Upgrade("Seed-Grower", 5, "biomass", 0, 0, 20, "pressure", 1, 100);
+let SeedGrower = new Upgrade("Seed-Grower", 5, "biomass", 0, 0, 20, "pressure", "biomult1", 1, 100);
 let BiomassGen = new Upgrade("Biomass-Generator", 20, "biomass", 0, 0, 200, "pressure");
-let TreeSpreader = new Upgrade("Tree-Spreader", 60, "biomass", 0, 0, 1000, "pressure", 1, 100);
+let TreeSpreader = new Upgrade("Tree-Spreader", 60, "biomass", 0, 0, 1000, "pressure", "biomult2", 1, 100);
 
 // ---------------------------------------------------------------------------------------------------------------------------
 
@@ -88,73 +101,6 @@ function loadUpgrades() {
         document.getElementById('biomult2').innerHTML = `Owned: ${TreeSpreader.mult} <br> Price: ${TreeSpreader.multprice} Treespreader mult <br> T1-Heater`;
     }
 }
-
-// ---------------------------------------------------------------------------------------------------------------------------
-
-
-function pressureMultiplier() {
-    if (clicker.presure >= T1_drill.multprice) {
-    console.log("Pressure Multiplier activated!");
-    T1_drill.mult ++;
-    T1_drill.multprice = (T1_drill.multprice * 1.5).toFixed(0);
-    console.log(`Drill Multiplier: ${T1_drill.mult}`)
-    document.getElementById('drillmult1').innerHTML = `Owned: ${T1_drill.mult} <br> Price: ${T1_drill.multprice} Pressure mult<br> T1-Heater`;
-    saveUpgrades();
-
-}
-}
-function heatMultiplier() {
-    if (clicker.heat >= T1_heater.multprice) {
-    console.log("Heat Multiplier activated!");
-    T1_heater.mult ++;
-    T1_heater.multprice = (T1_heater.multprice * 1.5).toFixed(0);
-    console.log(`Heater Multiplier: ${T1_heater.mult}`);
-    document.getElementById('heatmult1').innerHTML = `Owned: ${T1_heater.mult} <br> Price: ${T1_heater.multprice} Heat mult<br> T1-Heater`;
-    saveUpgrades();
-
-}
-}
-function biomassMultiplier() {
-    if (clicker.biomass >= SeedGrower.multprice) {
-    console.log("Biomass Multiplier activated!");
-    SeedGrower.mult ++;
-    SeedGrower.multprice = (SeedGrower.multprice * 1.5).toFixed(0);
-    console.log(`Seed Grower Multiplier: ${SeedGrower.mult}`);
-    document.getElementById('biomult1').innerHTML = `Owned: ${SeedGrower.mult} <br> Price: ${SeedGrower.multprice} Biomass Mult<br> T1-Heater`;
-    saveUpgrades();
-}
-}
-function pressureMultiplierT3(){
-    if (clicker.presure >= T3_drill.multprice) {
-    console.log("Pressure Multiplier activated!");
-    T3_drill.mult ++;
-    T3_drill.multprice = (T3_drill.multprice * 1.5).toFixed(0);
-    console.log(`T3 Drill Multiplier: ${T3_drill.mult}`);
-    document.getElementById('drillmult2').innerHTML = `Owned: ${T3_drill.mult} <br> Price: ${T3_drill.multprice} T3 Drill mult<br> T1-Heater`;
-    saveUpgrades();
-    }
-}
-function heatMultiplierT3(){
-    if (clicker.heat >= T3_heater.multprice) {
-    console.log("Heat Multiplier activated!");
-    T3_heater.mult ++;
-    T3_heater.multprice = (T3_heater.multprice * 1.5).toFixed(0);
-    console.log(`T3 Heater Multiplier: ${T3_heater.mult}`);
-    document.getElementById('heatmult2').innerHTML = `Owned: ${T3_heater.mult} <br> Price: ${T3_heater.multprice} T3 Heat mult<br> T1-Heater`;
-    saveUpgrades();
-}
-}
-function biomassMultiplierT3() {
-    if (clicker.biomass >= TreeSpreader.multprice) {
-    console.log("Biomass Multiplier activated!");
-    TreeSpreader.mult ++;
-    TreeSpreader.multprice = (TreeSpreader.multprice * 1.5).toFixed(0);
-    console.log(`Tree Spreader Multiplier: ${TreeSpreader.mult}`);
-    document.getElementById('biomult2').innerHTML = `Owned: ${TreeSpreader.mult} <br> Price: ${TreeSpreader.multprice} Treespreader mult <br> T1-Heater`;
-    saveUpgrades();
-    }
-}
-// ---------------------------------------------------------------------------------------------------------------------------
 
 function resetGame() {
     // Clear saved data
